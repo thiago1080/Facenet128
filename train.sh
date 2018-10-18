@@ -1,0 +1,16 @@
+python3 src/train_softmax.py \
+--logs_base_dir logs/ \
+--models_base_dir ~/gryfo/morecode/finetuning_sync/models/checkpoints/ \
+--pretrained_model /home/thiago/gryfo/morecode/finetuning_sync/models/128/20170512-110547/model-20170512-110547.ckpt-250000 \
+--data_dir /media/nfs_datasets/monitora/monitora_limpo \
+--image_size 160 \
+--model_def models.inception_resnet_v1 \
+--optimizer ADAM \
+--learning_rate -1 \
+--max_nrof_epochs 500 \
+--batch_size 90 \
+--keep_probability 0.4 \
+--random_flip \
+--learning_rate_schedule_file data/learning_rate_schedule_classifier_msceleb.txt \
+--weight_decay 5e-4 \
+--embedding_size 128 \
