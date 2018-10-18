@@ -156,7 +156,7 @@ def main(args):
         prelogits, _ = network.inference(image_batch, args.keep_probability, 
             phase_train=phase_train_placeholder, bottleneck_layer_size=args.embedding_size, 
             weight_decay=args.weight_decay)
-        logits = slim.fully_connected(prelogits, len(train_set), activation_fn=None, 
+        logits = slim.fully_connected(prelogits, 44052 , activation_fn=None, 
                 weights_initializer=tf.truncated_normal_initializer(stddev=0.1), 
                 weights_regularizer=slim.l2_regularizer(args.weight_decay),
                 scope='Logits', reuse=False)
