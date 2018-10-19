@@ -160,16 +160,15 @@ def main(args):
         prelogits, _ = network.inference(image_batch, args.keep_probability, 
             phase_train=phase_train_placeholder, bottleneck_layer_size=args.embedding_size, 
             weight_decay=args.weight_decay)
-        # logits = slim.fully_connected(prelogits, 44052 , activation_fn=None, 
-        #         weights_initializer=tf.truncated_normal_initializer(stddev=0.1), 
-        #         weights_regularizer=slim.l2_regularizer(args.weight_decay),
-        #         scope='Logits', reuse=False)
+        logits = slim.fully_connected(prelogits, 44052 , activation_fn=None, 
+                 weights_initializer=tf.truncated_normal_initializer(stddev=0.1), 
+                 weights_regularizer=slim.l2_regularizer(args.weight_decay),
+                 scope='Logits', reuse=False)
 
         embeddings = tf.nn.l2_normalize(prelogits, 1, 1e-10, name='embeddings')
 
         for i in tf.global_variables():
             print(i.op.name)
-        exit()
         # Add center loss
         if args.center_loss_factor>0.0:
             prelogits_center_loss, _ = facenet.center_loss(prelogits, label_batch, args.center_loss_alfa, nrof_classes)
@@ -199,7 +198,6 @@ def main(args):
         #Print the trainable variables (layers)
         for i in Trainable:
             print(i)
-        exit()
     # Create a saver
         # Build a Graph that trains the model with one batch of examples and updates the model parameters
         train_op = facenet.train(total_loss, global_step, args.optimizer, 
