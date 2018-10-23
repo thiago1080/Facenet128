@@ -8,7 +8,7 @@ python3 src/train_softmax.py \
 --optimizer ADAM \
 --learning_rate -1 \
 --max_nrof_epochs 500 \
---batch_size 90 \
+--batch_size 32 \
 --keep_probability 0.4 \
 --random_flip \
 --learning_rate_schedule_file data/learning_rate_schedule_classifier_msceleb.txt \
